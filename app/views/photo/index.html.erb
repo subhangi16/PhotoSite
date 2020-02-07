@@ -1,0 +1,18 @@
+<center><h1><% @user.first_name %><% @user.last_name %></h1></center>
+
+<%@photos.each do |photo| %>
+  <div>
+    <p><%= image_tag(photo.file_name) %>
+    <br/>
+    <em>posted on <%= photo.date_time %></em>
+    </p>
+    <% @comments=photo.comments %>
+      <%@comments.each do|comment| %>
+      <p>Comment:  <%=comment.comment_text %><br/></p>
+       <%@user= User.find(comment.user_id) %>
+      by <em> <%= link_to @user.first_name, {:action=> "index", :controller=> "photo", :id=> @user.id } %>
+      <br/>
+      comment time   <%= comment.date_time %></em>
+      <% end %>
+  </div>
+<% end %>

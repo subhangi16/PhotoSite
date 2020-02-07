@@ -1,0 +1,19 @@
+
+<center><h1>PhotoSite User List</h1>
+<p> There are <%=@user_all.count %> users</p>
+
+<table>
+  <tr>
+    <td>User</td>
+    <td>First</td>
+    <td>Last</td>
+  </tr>
+  <% @user_all.each do |user| %>
+  <tr>
+    <td><%= user.id %></td>
+    <td><%= link_to user.first_name, {:action=> "index", :controller=> "photo", :id=>user.id } %></td>
+    <td><%= link_to user.last_name %></td>
+  </tr>
+  <% end %>
+</table>
+</center>
